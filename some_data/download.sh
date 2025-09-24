@@ -4,9 +4,6 @@
 # 1) Set the input file and output directory
 infile="links.txt"
 
-# 2) Make sure the output directory exists
-mkdir -p "$outdir"
-
 # 3) Read file.txt line by line
 #    IFS=, makes read split the line at the FIRST comma into two vars: url and title
 #    -r prevents backslash escapes
@@ -48,3 +45,5 @@ while IFS=, read -r url title; do
   }
 
 done < "$infile"
+
+mogrify -resize 256x256^ -gravity center -extent 256x256 *.png
